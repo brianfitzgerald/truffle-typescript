@@ -1,10 +1,16 @@
-import React, { Component } from "react";
-import SimpleStorageContract from "../build/contracts/SimpleStorage.json";
+import * as React from "react";
+const SimpleStorageContract = require("../build/contracts/SimpleStorage.json");
 import getWeb3 from "./utils/getWeb3";
+import contract from "truffle-contract";
 
 import "./App.css";
 
-class App extends Component {
+type AppState = {
+  web3: any;
+  storageValue: number;
+};
+
+class App extends React.Component<{}, AppState> {
   constructor(props) {
     super(props);
 
@@ -40,7 +46,6 @@ class App extends Component {
      * state management library, but for convenience I've placed them here.
      */
 
-    const contract = require("truffle-contract");
     const simpleStorage = contract(SimpleStorageContract);
     simpleStorage.setProvider(this.state.web3.currentProvider);
 
