@@ -23,9 +23,7 @@ module.exports = {
     app: [
       appDirectory + "/index.tsx",
       appDirectory + "/App.css",
-      "react-hot-loader/patch",
-      "webpack-dev-server/client?http://localhost:8080",
-      "webpack/hot/only-dev-server"
+      "webpack-dev-server/client?http://localhost:8080"
     ]
   },
   output: {
@@ -79,6 +77,9 @@ module.exports = {
     new AssetsPlugin({
       path: path.join(__dirname, buildDirectory),
       update: true
+    }),
+    new HtmlWebpackPlugin({
+      template: appDirectory + "/index.ejs"
     })
   ]
 };
